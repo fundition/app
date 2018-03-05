@@ -34,8 +34,8 @@
       1. Auto Height Function
   ================================================*/
   function autoHeight() {
-    var why_choose_img = $('.apps-craft-why-chose-img'),
-      why_choose_txt = $('.apps-craft-why-choose-us-container');
+    var why_choose_img = $('.fundition-why-chose-img'),
+      why_choose_txt = $('.fundition-why-choose-us-container');
 
       why_choose_txt.css('height', why_choose_img.outerHeight());
   }
@@ -57,7 +57,7 @@
 
 $(window).on('load', function() {
   autoHeight();
-  $('body').addClass('apps-craft--loaded');
+  $('body').addClass('fundition--loaded');
 
 
 }); // end on.load event
@@ -82,8 +82,8 @@ $(document).ready(function(){
   /*=============================================== 
       6. Apps Craft Top Menu Offset
   ================================================*/
-  if($('.apps-craft-menu ul li a, .apps-craft-menu-item ul li a, .apps-craft-logo a').length >0 ) {
- 	$('.apps-craft-menu ul li a, .apps-craft-menu-item ul li a, .apps-craft-logo a').on('click', function(event) {
+  if($('.fundition-menu ul li a, .fundition-menu-item ul li a, .fundition-logo a').length >0 ) {
+ 	$('.fundition-menu ul li a, .fundition-menu-item ul li a, .fundition-logo a').on('click', function(event) {
  		event.preventDefault();
 
  		var target = $(this.getAttribute('href'));
@@ -97,8 +97,8 @@ $(document).ready(function(){
   /*=============================================== 
       7. Apps Craft Footer Menu Offset
   ================================================*/
- if($('.apps-craft-footer-menu').length >0 ) {
-  $( '.apps-craft-footer-menu' ).on('click', 'a', function(e){
+ if($('.fundition-footer-menu').length >0 ) {
+  $( '.fundition-footer-menu' ).on('click', 'a', function(e){
     var href = $(this).attr("href"),
         offsetTop = href === "#" ? 0 : $(href).offset().top - 0;
     $('html, body').stop().animate({ 
@@ -112,10 +112,10 @@ $(document).ready(function(){
       8. Apps Craft Sync Slider
   ================================================*/
 
-  if ($('#apps-craft-commentor-slider').length >0) {
+  if ($('#fundition-commentor-slider').length >0) {
 
-    var sync1 = $("#apps-craft-commentor-slider");
-    var sync2 = $("#apps-craft-testimonial-thumb");
+    var sync1 = $("#fundition-commentor-slider");
+    var sync2 = $("#fundition-testimonial-thumb");
 
     sync1.owlCarousel({
       singleItem : true,
@@ -151,17 +151,17 @@ $(document).ready(function(){
 
     function syncPosition(el){
       var current = this.currentItem;
-      $("#apps-craft-testimonial-thumb")
+      $("#fundition-testimonial-thumb")
         .find(".owl-item")
         .removeClass("synced")
         .eq(current)
         .addClass("synced")
-      if($("#apps-craft-testimonial-thumb").data("owlCarousel") !== undefined){
+      if($("#fundition-testimonial-thumb").data("owlCarousel") !== undefined){
         center(current)
       }
     }
 
-    $("#apps-craft-testimonial-thumb").on("click", ".owl-item", function(e){
+    $("#fundition-testimonial-thumb").on("click", ".owl-item", function(e){
       e.preventDefault();
       var number = $(this).data("owlItem");
       sync1.trigger("owl.goTo",number);
@@ -198,8 +198,8 @@ $(document).ready(function(){
 /*=============================================== 
       9. Apps Craft Video pop UP
   ================================================*/
-if ($('.apps-craft-popup-video').length > 0) {
-  $('.apps-craft-popup-video').magnificPopup({
+if ($('.fundition-popup-video').length > 0) {
+  $('.fundition-popup-video').magnificPopup({
     disableOn: 700,
     type: 'iframe',
     mainClass: 'mfp-fade',
@@ -213,7 +213,7 @@ if ($('.apps-craft-popup-video').length > 0) {
 /*=============================================== 
      10. Apps Craft Video Background
   ================================================*/
-if ($('.apps-craft-video-bg-section').length > 0) {
+if ($('.fundition-video-bg-section').length > 0) {
   var options = { 
     videoId: 'waTteMeg4Ag', 
     start: 3 ,
@@ -221,14 +221,14 @@ if ($('.apps-craft-video-bg-section').length > 0) {
     wrapperZIndex: 99,
     repeat: true,
   };
-  $('.apps-craft-video-bg-section').tubular(options);
+  $('.fundition-video-bg-section').tubular(options);
 }
 
 /*=============================================== 
      11. Apps Craft Welcome Slider
   ================================================*/
-if ($('#apps-craft-welcome-slider').length > 0) {
-  var owl1 = $("#apps-craft-welcome-slider");
+if ($('#fundition-welcome-slider').length > 0) {
+  var owl1 = $("#fundition-welcome-slider");
   owl1.owlCarousel({
       slideSpeed : 300,
       paginationSpeed : 400,
@@ -260,9 +260,9 @@ $("#showcaseSlider").owlCarousel({
 /*=============================================== 
      12. Apps Craft Accordion
   ================================================*/
-if ($('.apps-craft-accordion .panel-title').length > 0) {
-  $('.apps-craft-accordion .panel-title').click(function(){
-    $('.apps-craft-accordion .panel-title').removeClass('click');
+if ($('.fundition-accordion .panel-title').length > 0) {
+  $('.fundition-accordion .panel-title').click(function(){
+    $('.fundition-accordion .panel-title').removeClass('click');
     $(this).addClass('click');
   });
 }
@@ -271,20 +271,20 @@ if ($('.apps-craft-accordion .panel-title').length > 0) {
 			13. Contact Form
 		================================================*/
 
-		if ($('#apps-craft-form').length > 0) {
+		if ($('#fundition-form').length > 0) {
 
-	  var apps_craft_contact_btn = $('#apps-craft-input-send'),
-	      apps_craft_form = $('#apps-craft-form');
+	  var apps_craft_contact_btn = $('#fundition-input-send'),
+	      apps_craft_form = $('#fundition-form');
 
 	  apps_craft_form.on('submit', function(e){
 	    e.preventDefault();
 
-	    $('.apps_craft_error, .apps-craft-success-message, .apps-craft-loader').remove();
+	    $('.apps_craft_error, .fundition-success-message, .fundition-loader').remove();
 	    $('.form-group input').removeClass('apps_craft_input_error');
 
-	    var apps_craft_input_name     = $('#apps-craft-input-name'),
-	        apps_craft_input_email    = $('#apps-craft-input-email'),
-	        apps_craft_input_message  = $('#apps-craft-input-message'),
+	    var apps_craft_input_name     = $('#fundition-input-name'),
+	        apps_craft_input_email    = $('#fundition-input-email'),
+	        apps_craft_input_message  = $('#fundition-input-message'),
 	        apps_craft_error          = false,
 	        self                  = $(this);
 
@@ -303,7 +303,7 @@ if ($('.apps-craft-accordion .panel-title').length > 0) {
 	    }
 
 	    if(apps_craft_error === false){
-	      apps_craft_contact_btn.before('<span class="apps-craft-loader apps-craft-loader1"></span>').hide().fadeIn();
+	      apps_craft_contact_btn.before('<span class="fundition-loader fundition-loader1"></span>').hide().fadeIn();
 	      $.ajax({
 	        type: "POST",
 	        url: "php/contact-form.php",
@@ -313,9 +313,9 @@ if ($('.apps-craft-accordion .panel-title').length > 0) {
 	          'apps_craft_input_message' : apps_craft_input_message.val()
 	        },
 	        success: function(result){
-	           apps_craft_contact_btn.after('<div class="apps-craft-success-message">' + result + '</div>').hide().fadeIn();
+	           apps_craft_contact_btn.after('<div class="fundition-success-message">' + result + '</div>').hide().fadeIn();
 
-	           $(".apps-craft-loader").fadeOut("normal", function() {
+	           $(".fundition-loader").fadeOut("normal", function() {
 	              $(this).remove();
 	          });
 	        }
@@ -334,7 +334,7 @@ if ($('.apps-craft-accordion .panel-title').length > 0) {
         callback: callbackFunction
     });
      function callbackFunction(resp){
-      formthis.find('label').addClass('apps-craft-subscribed-label');
+      formthis.find('label').addClass('fundition-subscribed-label');
     }
   });
  }
@@ -362,8 +362,8 @@ var mySkrollr = skrollr.init({
 /*--------------------------------------------------------------
   20. RIPPLES CANVAS
 --------------------------------------------------------------*/
-var ripple = $('body.apps-craft-v8 #apps-craft-home');
-if ($('body.apps-craft-v8 #apps-craft-home').length > 0 ) {
+var ripple = $('body.fundition-v8 #fundition-home');
+if ($('body.fundition-v8 #fundition-home').length > 0 ) {
   ripple.ripples({
     resolution: 512,
     dropRadius: 10, //px
@@ -386,17 +386,17 @@ if ($('body.apps-craft-v8 #apps-craft-home').length > 0 ) {
   ================================================*/
 
 // Apps Craft Side bar Menu
-$('.apps-craft-humberger-menu').on('click', function() {
-	if ($('.apps-craft-side-bar-menu').hasClass('active')) {
-		$('.apps-craft-side-bar-menu').removeClass('active');
+$('.fundition-humberger-menu').on('click', function() {
+	if ($('.fundition-side-bar-menu').hasClass('active')) {
+		$('.fundition-side-bar-menu').removeClass('active');
 	} else {
-		$('.apps-craft-side-bar-menu').addClass('active');
+		$('.fundition-side-bar-menu').addClass('active');
 	}
 });
 
-$('.apps-craft-menu-item ul li a, .apps-craft-logo a').on('click', function(event) {
-	if ($('.apps-craft-side-bar-menu').hasClass('active')) {
-		$('.apps-craft-side-bar-menu').removeClass('active');
+$('.fundition-menu-item ul li a, .fundition-logo a').on('click', function(event) {
+	if ($('.fundition-side-bar-menu').hasClass('active')) {
+		$('.fundition-side-bar-menu').removeClass('active');
 	}
 });
 
@@ -404,9 +404,9 @@ $('.apps-craft-menu-item ul li a, .apps-craft-logo a').on('click', function(even
       17. particle active
   ================================================*/
 
-if ($('body').hasClass('apps-craft-particle')) {
+if ($('body').hasClass('fundition-particle')) {
 
-  particlesJS("apps-craft-home", {
+  particlesJS("fundition-home", {
     "particles": {
       "number": {
         "value": 500,
@@ -563,9 +563,9 @@ if ($('body').hasClass('apps-craft-particle')) {
 
 $(window).scroll(function(){
   if ($(window).scrollTop() > 50) {
-     $('.apps-craft-main-menu-area').addClass('sticky-menu'); 
+     $('.fundition-main-menu-area').addClass('sticky-menu'); 
   } else {
-      $('.apps-craft-main-menu-area').removeClass('sticky-menu');
+      $('.fundition-main-menu-area').removeClass('sticky-menu');
   }
 }); // End Scroll Function
 
@@ -669,9 +669,9 @@ var transformProp = Modernizr.prefixed('transform');
   /*--------------------------------------------------------------
     19.  Apps Craft - MENU TOGGLE INIT
   --------------------------------------------------------------*/
-  var apps_main_menu_icon = $("#apps-craft-main-menu-icon"),
-      apps_main_menu_nave = $('#apps-craft-menu'),
-      apps_main_menu_link = $("#apps-craft-menu ul li a");
+  var apps_main_menu_icon = $("#fundition-main-menu-icon"),
+      apps_main_menu_nave = $('#fundition-menu'),
+      apps_main_menu_link = $("#fundition-menu ul li a");
 
 
   if(apps_main_menu_icon.length >0 ){
@@ -701,8 +701,8 @@ var transformProp = Modernizr.prefixed('transform');
     20. Apps Craft - Parallax on mouseover
   --------------------------------------------------------------*/
   $(document).on("mousemove", function( e ) {
-      $( '.apps-craft-welcome-content.parallax' ).parallax( -40, e );
-      $( '.apps-craft-welcome-screenshort.parallax' ).parallax( 40 , e );
+      $( '.fundition-welcome-content.parallax' ).parallax( -40, e );
+      $( '.fundition-welcome-screenshort.parallax' ).parallax( 40 , e );
   }); // end document mouvemove
 
 
