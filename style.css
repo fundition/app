@@ -2536,17 +2536,17 @@ body.apps-craft-v7 .apps-craft-position-rel .layer img {
 }
 .apps-craft-feature-img .icon-5x{
 	left: 0;
-	top: -92px;
+	top: 120px;
 	width: 84px;
 }
 .apps-craft-feature-img .icon-6x{
 	top: 0;
-	left: 40px;
+	left: 80px;
 	width: 19px;
 }
 .apps-craft-feature-img  .icon-7x{
 	top: 0;
-	left: 60px;
+	left: calc(50% - 60px);
 	width: 119px;
 }
 .apps-craft-feature-img  .icon-8x{

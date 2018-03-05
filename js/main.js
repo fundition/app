@@ -57,13 +57,6 @@
 
 $(window).on('load', function() {
   autoHeight();
-
-  /*=============================================== 
-      4. Preloader
-  ================================================*/
-  $('#preloader').fadeOut(450);
-
-
   $('body').addClass('apps-craft--loaded');
 
 
