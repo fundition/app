@@ -214,54 +214,43 @@
 					<div class="fundition-section-heading" style="padding-bottom:20px;">
 						<h2>1.0 INTRODUCTION</h2>
 					</div>
-					<div class="ct-chart"></div>
+					<div class="chart-fees"></div>
 					<script src="js/chartist.min.js"></script>
 					<script>
 
-						var chart = new Chartist.Line('.ct-chart', {
-							labels: ['', 'Kickstarter', 'Patreon', 'Average', 'Fundition'],
+						var chart = new Chartist.Line('.chart-fees', {
+							labels: ['', 'Kickstarter 16%', 'Patreon 5%', 'Average 11%', 'Fundition 0%', ''],
 							series: [
-								[, 16, 5, 11, 0]
+								[, 16, 5, 11, 0,]
 							]
 						}, {
+								showArea: true,
+								showLine: true,
+								showPoint: true,
+								fullWidth: true,
 								low: 0,
 								axisY: {
-								// Lets offset the chart a bit from the labels
-								offset: 60,
-								// The label interpolation function enables you to modify the values
-								// used for the labels on each axis. Here we are converting the
-								// values into million pound.
-								labelInterpolationFnc: function (value) {
-									return value + ' %';
+									offset: 60,
+									labelInterpolationFnc: function (value) {
+										return value + ' %';
+									}
 								}
-							}
 							});
-
-						// Let's put a sequence number aside so we can use it in the event callbacks
 						var seq = 0,
 							delays = 80,
 							durations = 500;
-
-						// Once the chart is fully created we reset the sequence
 						chart.on('created', function () {
 							seq = 0;
 						});
-
-						// On each drawn element by Chartist we use the Chartist.Svg API to trigger SMIL animations
 						chart.on('draw', function (data) {
 							seq++;
 
 							if (data.type === 'line') {
-								// If the drawn element is a line we do a simple opacity fade in. This could also be achieved using CSS3 animations.
 								data.element.animate({
 									opacity: {
-										// The delay when we like to start the animation
 										begin: seq * delays + 1000,
-										// Duration of the animation
 										dur: durations,
-										// The value where the animation should start
 										from: 0,
-										// The value where it should end
 										to: 1
 									}
 								});
@@ -272,7 +261,6 @@
 										dur: durations,
 										from: data.y + 100,
 										to: data.y,
-										// We can specify an easing function from Chartist.Svg.Easing
 										easing: 'easeOutQuart'
 									}
 								});
@@ -311,7 +299,6 @@
 									}
 								});
 							} else if (data.type === 'grid') {
-								// Using data.axis we get x or y which we can use to construct our animation definition objects
 								var pos1Animation = {
 									begin: seq * delays,
 									dur: durations,
@@ -319,7 +306,6 @@
 									to: data[data.axis.units.pos + '1'],
 									easing: 'easeOutQuart'
 								};
-
 								var pos2Animation = {
 									begin: seq * delays,
 									dur: durations,
@@ -327,7 +313,6 @@
 									to: data[data.axis.units.pos + '2'],
 									easing: 'easeOutQuart'
 								};
-
 								var animations = {};
 								animations[data.axis.units.pos + '1'] = pos1Animation;
 								animations[data.axis.units.pos + '2'] = pos2Animation;
@@ -338,7 +323,6 @@
 									to: 1,
 									easing: 'easeOutQuart'
 								};
-
 								data.element.animate(animations);
 							}
 						});
@@ -494,6 +478,136 @@
 					<div class="fundition-section-heading">
 						<h2>2.0 CROWDFUNDING</h2>
 					</div>
+					<div class="chart-growrate"></div>
+					<script src="js/chartist.min.js"></script>
+					<script src="js/chartist-legend.js"></script>
+					<script>
+
+
+
+						var chart = new Chartist.Bar('.chart-growrate', {
+							labels: ['', '2015', '2016', '2017', 'Estimated in 2021', ''],
+							series: [[, 500, 1300, 1700, 2500],
+							[, 53, 75, 120, 140]]
+						}, {
+								low: 0,
+								showArea: true,
+								showPoint: false,
+								axisY: {
+									offset: 50,
+									labelInterpolationFnc: function (value) {
+										return value
+									},
+									scaleMinSpace: 10
+								},
+								height:500,
+								fullWidth: true,
+								plugins: [
+									Chartist.plugins.legend({
+										legendNames: ['Projects', 'USD Billions'],
+									})]
+							});
+						var seq = 0,
+							delays = 80,
+							durations = 500;
+						chart.on('created', function () {
+							seq = 0;
+						});
+						chart.on('draw', function (data) {
+							seq++;
+
+							if (data.type === 'bar') {
+								data.element.animate({
+									opacity: {
+										begin: seq * delays + 500,
+										dur: durations,
+										from: 0,
+										to: 1
+									}
+								});
+							} else if (data.type === 'label' && data.axis === 'x') {
+								data.element.animate({
+									y: {
+										begin: seq * delays,
+										dur: durations,
+										from: data.y + 100,
+										to: data.y,
+										easing: 'easeOutQuart'
+									}
+								});
+							} else if (data.type === 'label' && data.axis === 'y') {
+								data.element.animate({
+									x: {
+										begin: seq * delays,
+										dur: durations,
+										from: data.x - 100,
+										to: data.x,
+										easing: 'easeOutQuart'
+									}
+								});
+							} else if (data.type === 'point') {
+								data.element.animate({
+									x1: {
+										begin: seq * delays,
+										dur: durations,
+										from: data.x - 10,
+										to: data.x,
+										easing: 'easeOutQuart'
+									},
+									x2: {
+										begin: seq * delays,
+										dur: durations,
+										from: data.x - 10,
+										to: data.x,
+										easing: 'easeOutQuart'
+									},
+									opacity: {
+										begin: seq * delays,
+										dur: durations,
+										from: 0,
+										to: 1,
+										easing: 'easeOutQuart'
+									}
+								});
+							} else if (data.type === 'grid') {
+								var pos1Animation = {
+									begin: seq * delays,
+									dur: durations,
+									from: data[data.axis.units.pos + '1'] - 30,
+									to: data[data.axis.units.pos + '1'],
+									easing: 'easeOutQuart'
+								};
+								var pos2Animation = {
+									begin: seq * delays,
+									dur: durations,
+									from: data[data.axis.units.pos + '2'] - 100,
+									to: data[data.axis.units.pos + '2'],
+									easing: 'easeOutQuart'
+								};
+								var animations = {};
+								animations[data.axis.units.pos + '1'] = pos1Animation;
+								animations[data.axis.units.pos + '2'] = pos2Animation;
+								animations['opacity'] = {
+									begin: seq * delays,
+									dur: durations,
+									from: 0,
+									to: 1,
+									easing: 'easeOutQuart'
+								};
+								data.element.animate(animations);
+							}
+						});
+
+						// For the sake of the example we update the chart every time it's created with a delay of 10 seconds
+						chart.on('created', function () {
+							if (window.__exampleAnimateTimeout) {
+								clearTimeout(window.__exampleAnimateTimeout);
+								window.__exampleAnimateTimeout = null;
+							}
+							window.__exampleAnimateTimeout = setTimeout(chart.update.bind(chart), 12000);
+						});
+
+					</script>
 					<p>Around the year 2010, the start-up industry saw some incredible changes. Companies financial method and projects tend
 						to lean towards the decentralization and the diversification of the public’s way of financing. The risk capital is
 						losing its part meanwhile the crowdfunding is mobilizing capitals at a faster pace. In the meantime, the new blockchain
@@ -566,26 +680,34 @@
 						 data-top="opacity:1;bottom: 61px;transform:translateX(330px) scale(0.8);">
 							<img src="img/icon/icon-human.png" alt="Small Icon">
 						</span>
-						<span class="fundition-feature-ico icon-5x" data-650-top="opacity: 0;top: 215px;transform:translateX(330px) scale(0);" data-450-top="opacity: 0.5;bottom: 61px;transform:translateX(330px) scale(0.5);"
-						 data-350-top="opacity: 1;bottom: 61px;transform:translateX(530px) scale(0.5);" data-250-top="opacity: 0;bottom: 61px;transform:translateX(530px) scale(0.5);"
-						 data-top="bottom: 61px;transform:translateX(530px) scale(0.5);">
-							<img src="img/icon/icon-money.png" alt="Small Icon">
+						<span class="fundition-feature-ico icon-5x" 
+						data-650-top="opacity: 0;top: 215px;transform:translateX(330px) scale(0);" 
+						data-450-top="opacity: 0.5;bottom: 61px;transform:translateX(330px) scale(0.5);"
+						 data-350-top="opacity: 1;bottom: 61px;transform:translateX(530px) scale(1);" 
+						 data-280-top="opacity: 0;bottom: 61px;transform:translateX(530px) scale(0.5);"
+						 data-top="bottom: 61px;transform:translateX(530px) scale(1);">
+							<img src="img/icon/icon-idea.png" alt="Small Icon">
 						</span>
 						<span class="fundition-feature-ico icon-5x" data-650-top="top: 215px;transform:translateX(750px) scale(0);" data-450-top="bottom: 61px;transform:translateX(750px) scale(0.8);"
 						 data-top="bottom: 61px;transform:translateX(750px) scale(0.8);">
 							<img src="img/icon/icon-human.png" alt="Small Icon">
 						</span>
-						<span class="fundition-feature-ico icon-5x" data-600-top="opacity: 0;top: 215px;transform:translateX(750px) scale(0);" data-400-top="opacity: 0.5;bottom: 61px;transform:translateX(750px) scale(0.5);"
-						 data-300-top="opacity: 1;bottom: 61px;transform:translateX(570px) scale(0.5);" data-250-top="opacity: 0;bottom: 61px;transform:translateX(570px) scale(0.5);"
-						 data-top="bottom: 61px;transform:translateX(570px) scale(0.5);">
-							<img src="img/icon/icon-idea.png" alt="Small Icon">
+						<span class="fundition-feature-ico icon-5x" 
+						data-600-top="opacity: 0;top: 215px;transform:translateX(750px) scale(0);" 
+						data-400-top="opacity: 0.5;bottom: 61px;transform:translateX(750px) scale(0.5);"
+						 data-300-top="opacity: 1;bottom: 61px;transform: translateX(570px) scale(1);" 
+						 data-280-top="opacity: 0;bottom: 61px;transform:translateX(570px) scale(0.5);"
+						 data-top="bottom: 61px;transform:translateX(570px) scale(1);">
+							<img src="img/icon/icon-money.png" alt="Small Icon">
 						</span>
 						<span class="fundition-feature-ico icon-6x" data-bottom="transform:translateY(830px)" data-top="transform:translateY(-90px);">
 							<img src="img/icon/15.png" alt="Small Icon">
 						</span>
-						<span class="fundition-feature-ico icon-7x" data-350-top="opacity: 0; transform: scale(0); top: 246px;" data-200-top="opacity: 0; transform: scale(0); top: 246px;"
-						 data-100-top="opacity: 1; transform: scale(1); bottom: 65px;">
-							<img src="img/icon/icon-reward.png" alt="Small Icon">
+						<span class="fundition-feature-ico icon-7x" 
+						data-350-top="opacity: 0; transform: scale(0); top: 246px;" 
+						data-200-top="opacity: 0; transform: scale(0); top: 246px;"
+						 data-150-top="opacity: 1; transform: scale(1); bottom: 65px;">
+							<img src="img/icon/icon-fnd.png" alt="Small Icon">
 						</span>
 						<span class="fundition-feature-ico icon-7x" data-100-top="opacity: 0; transform:translateY(250px) scale(1); bottom: 65px;"
 						 data-top="opacity: 1; transform:translateY(650px) scale(1); bottom: 65px;">
@@ -680,7 +802,7 @@
 	<!-- main.js -->
 
 	<script src="js/chartist.min.js"></script>
-
+	<script src="js/chartist-legend.js"></script>
 
 </body>
 
